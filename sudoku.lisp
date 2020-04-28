@@ -1,6 +1,7 @@
 ;;;; sudoku.lisp
 
 (in-package #:sudoku)
+(use-package :alexandria)
 
 ;;;; generic stuff
 (defmacro vref (array &rest subscripts)
@@ -153,12 +154,10 @@
                         (format t "~&~A is forced for field ~A" number place))))))))
     sudoku))
 
-(print (search-fixpoint (compose #'calculate-forced #'calculate-forbidden) hard-sudoku))
+(print (search-fixpoint
+	(compose #'calculate-forced #'calculate-forbidden)
+	sudoku))
 
-
-(defun calculate (group sud)
-  (let ((sudoku (map 'vector #'copy-list sud)))
-    (let ((
 
 
 
